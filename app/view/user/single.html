@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include href="blocks/head.html" />
+</head>
+<body>
+<div class="container-fluid">
+	<include href="blocks/navbar.html" />
+
+	<div class="row profile-row">
+		<div class="col-md-5 text-right">
+			<h1>{{ @user.name }}</h1>
+			<p>I'm the lead developer of Cubik Network</p>
+		</div>
+		<div class="col-md-2 text-center">
+			<img class="img-circle" src="{{ gravatar(@user.email, 128) }}" alt>
+		</div>
+		<div class="col-md-5 text-left">
+			<p><span class="fa fa-fw fa-map-marker"></span>&ensp;Orem, UT, USA</p>
+			<span class="fa fa-fw fa-envelope"></span>&ensp;alan@cubiknetwork.com<br>
+			<span class="fa fa-fw fa-envelope"></span>&ensp;alan@phpizza.com<br>
+			<span class="fa fa-fw fa-phone"></span>&ensp;+1 385 207-6652<br>
+			<span class="fa fa-fw fa-phone"></span>&ensp;+1 801 ALA-N128<br>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<check if="{{ @posts.count }}">
+			<true>
+				<include href="blocks/post/list.html" />
+			</true>
+			<false>
+				<p class="text-center lead">No posts found :(</p>
+			</false>
+		</check>
+	</div>
+
+	<include href="blocks/footer.html" />
+</div>
+</body>
+</html>

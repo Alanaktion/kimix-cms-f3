@@ -1,0 +1,37 @@
+	<div class="container">
+
+		<div class="card card-signin">
+			<img class="img-circle profile-img" src="avatar.png" alt="">
+			<form class="form-signin" role="form">
+				<check if="{{ !empty(@POST.username) }}">
+					<true>
+						<input placeholder="Username" class="form-control" name="username" type="text" required value="{{ @POST.username }}">
+					</true>
+					<false>
+						<input placeholder="Username" class="form-control" name="username" type="text" required autofocus>
+					</false>
+				</check>
+				<check if="{{ !empty(@POST.username) }}">
+					<true>
+						<input class="form-control" placeholder="Password" name="password" type="password" required autofocus>
+					</true>
+					<false>
+						<input class="form-control" placeholder="Password" name="password" type="password" required>
+					</false>
+				</check>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+				<div>
+					<a class="pull-right" href="/reset">Forgot your login?</a>
+					<!-- <label class="checkbox">
+						<input type="checkbox" value="remember-me"> Stay signed in
+					</label> -->
+				</div>
+			</form>
+		</div>
+
+		<p class="text-center">
+			<a href="/signup">Create an account</a>
+		</p>
+
+	</div>

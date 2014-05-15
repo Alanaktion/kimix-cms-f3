@@ -1,0 +1,97 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nb-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/stream">{{ @site.name }}</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="nb-collapse">
+			<ul class="nav navbar-nav">
+				<li class="{{ @menuitem == 'stream' ? 'active':'' }} has-tooltip" data-placement="bottom" title="Stream">
+					<a href="/stream">
+						<span class="fa fa-lg fa-fw fa-home"></span>
+						<span class="visible-xs">Stream</span>
+					</a>
+				</li>
+				<li class="{{ @menuitem == 'news' ? 'active':'' }} has-tooltip" data-placement="bottom" title="News">
+					<a href="/news">
+						<span class="fa fa-lg fa-fw fa-list"></span>
+						<span class="visible-xs">News</span>
+					</a>
+				</li>
+				<li class="{{ @menuitem == 'games' ? 'active':'' }} has-tooltip" data-placement="bottom" title="Games">
+					<a href="/games">
+						<span class="fa fa-lg fa-fw fa-gamepad"></span>
+						<span class="visible-xs">Games</span>
+					</a>
+				</li>
+				<li class="{{ @menuitem == 'inbox' ? 'active':'' }} has-tooltip" data-placement="bottom" title="Inbox">
+					<a href="/inbox">
+						<span class="fa fa-lg fa-fw fa-inbox"></span>
+						<span class="visible-xs">Inbox</span>
+					</a>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-left hidden-sm" role="search" action="/search" method="get">
+				<div class="input-group">
+					<input type="search" name="q" class="form-control" value="{{ empty(@GET.q) ? '' : @GET.q }}" placeholder="Search">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default">
+							<span class="sr-only">Search</span>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+				</div>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<check if="{{ @user.role=='admin' }}">
+					<li class="{{ @menuitem == 'admin' ? 'active':'' }}">
+						<a href="/admin">
+							<span class="hidden-sm">Administration</span>
+							<span class="fa fa-wrench visible-sm"></span>
+						</a>
+					</li>
+				</check>
+				<li class="dropdown {{ @menuitem == 'user' ? 'active':'' }}">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<span class="hidden-sm">{{ @user.name }} <b class="caret"></b></span>
+						<span class="fa fa-user visible-sm"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="/{{ @user.username }}">
+							<span class="fa fa-fw fa-user"></span>&ensp;Profile
+						</a></li>
+						<li><a href="/user/buddies">
+							<span class="fa fa-fw fa-users"></span>&ensp;Buddies
+						</a></li>
+						<li><a href="/user/settings">
+							<span class="fa fa-fw fa-cogs"></span>&ensp;Settings
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="/logout">
+							<span class="fa fa-fw fa-sign-out"></span>&ensp;Sign Out
+						</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<check if="{{ !empty(@error) }}">
+	<p class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		{{ @error }}
+	</p>
+</check>
+<check if="{{ !empty(@success) }}">
+	<p class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		{{ @success }}
+	</p>
+</check>

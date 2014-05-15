@@ -1,0 +1,40 @@
+<check if="{{ @DEBUG >= 3 }}">
+	<set dblog="{{ explode(PHP_EOL, @db.instance->log()) }}" />
+	<br>
+	<div class="well well-sm log">
+		<repeat group="{{ @dblog }}" value="{{ @row }}">
+			<check if="{{ strpos(@row, '[CACHED]') }}">
+				<true>
+					<div class="text-muted">{{ @row }}</div>
+				</true>
+				<false>
+					<div>{{ @row }}</div>
+				</false>
+			</check>
+		</repeat>
+	</div>
+</check>
+<footer class="row">
+	<div class="col-xs-8">
+		<p class="text-muted">
+			&copy; 2012&ndash;{{ date("Y") }} <a href="http://smartsites.us" class="nolink">Smart<b>Sites</b></a>
+			<check if="{{ @db.instance->log() }}">
+				<set queries_log="{{ @db.instance->log() }}" />
+				<set queries_total="{{ substr_count(@queries_log, date('O (')) }}" />
+				<set queries_cached="{{ substr_count(@queries_log, '[CACHED]') }}" />
+				&middot; <span title="{{ @queries_total }} total queries, {{ @queries_cached }} cached">{{ @queries_total - @queries_cached }} queries</span>
+			</check>
+			<check if="{{ !empty(@microtime) }}">
+				<set pagemtime="{{ microtime(true) - @microtime }}" />
+				&middot; <span title="Page generated in {{ round(@pagemtime, 10) }} seconds">{{ round(@pagemtime * 1000, 0) }}ms</span>
+			</check>
+			<check if="{{ @revision }}">
+				&middot; <span title="Current commit: {{ @revision }}">{{ substr(@revision, 0, 7) }}</span>
+			</check>
+		</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="visible-sm visible-xs text-right"><a href="/logout" class="btn btn-default btn-xs">Log Out</a></p>
+	</div>
+</footer>
+<script src="/minify/js/jquery-1.7.2.min.js,bootstrap.min.js,modernizr.custom.js,global.js"></script>

@@ -1,0 +1,7 @@
+body {
+	padding: 80px 0 0;
+	font-size: 14px;
+}
+body.login {
+	padding-top: 20px;
+}

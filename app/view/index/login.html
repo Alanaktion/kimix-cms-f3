@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include href="blocks/head.html" />
+	<style type="text/css">
+	body {
+		padding-top: 40px;
+		padding-bottom: 40px;
+		background-color: #fff;
+	}
+	.form-signin {
+		max-width: 330px;
+		padding: 15px;
+		margin: 0 auto;
+	}
+	.form-signin-heading {
+		margin: 0 0 15px;
+		font-size: 18px;
+		font-weight: 400;
+		color: #555;
+	}
+	.form-signin .checkbox {
+		margin-bottom: 10px;
+		font-weight: normal;
+	}
+	.form-signin .form-control {
+		position: relative;
+		height: auto;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 10px;
+		font-size: 16px;
+	}
+	.form-signin .form-control:focus {
+		z-index: 2;
+	}
+	.form-signin input[type="email"] {
+		margin-bottom: 10px;
+	}
+	.form-signin input[type="password"] {
+		margin-bottom: 10px;
+	}
+	.card {
+		width: 304px;
+		padding: 20px 25px 30px;
+		margin: 0 auto 25px;
+		background-color: #f7f7f7;
+		border-radius: 2px;
+		box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+	}
+	.card-signin {
+		width: 354px;
+		padding: 40px;
+	}
+	.card-signin .profile-img {
+		display: block;
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 10px;
+	}
+	</style>
+</head>
+<body>
+<div class="hidden-xs" style="padding-top: 60px;"></div>
+
+	<div class="container">
+
+		<h2 class="form-signin-heading text-center">Sign in to Webity</h2>
+
+		<div class="card card-signin">
+			<img class="img-circle profile-img" src="avatar.png" alt="">
+			<form class="form-signin" role="form">
+				<check if="{{ !empty(@POST.username) }}">
+					<true>
+						<input placeholder="Username" class="form-control" name="username" type="text" required value="{{ @POST.username }}">
+					</true>
+					<false>
+						<input placeholder="Username" class="form-control" name="username" type="text" required autofocus>
+					</false>
+				</check>
+				<check if="{{ !empty(@POST.username) }}">
+					<true>
+						<input class="form-control" placeholder="Password" name="password" type="password" required autofocus>
+					</true>
+					<false>
+						<input class="form-control" placeholder="Password" name="password" type="password" required>
+					</false>
+				</check>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+				<div>
+					<a class="pull-right" href="/reset">Forgot your login?</a>
+					<!-- <label class="checkbox">
+						<input type="checkbox" value="remember-me"> Stay signed in
+					</label> -->
+				</div>
+			</form>
+		</div>
+
+		<p class="text-center">
+			<a href="/signup">Create an account</a>
+		</p>
+
+	</div>
+
+</body>
+</html>
